@@ -1,0 +1,15 @@
+/Users/magnus/source/interpreter-p1/src/lox/bin/Debug/net8.0/lox
+/Users/magnus/source/interpreter-p1/src/lox/bin/Debug/net8.0/lox.deps.json
+/Users/magnus/source/interpreter-p1/src/lox/bin/Debug/net8.0/lox.runtimeconfig.json
+/Users/magnus/source/interpreter-p1/src/lox/bin/Debug/net8.0/lox.dll
+/Users/magnus/source/interpreter-p1/src/lox/bin/Debug/net8.0/lox.pdb
+/Users/magnus/source/interpreter-p1/src/lox/obj/Debug/net8.0/lox.GeneratedMSBuildEditorConfig.editorconfig
+/Users/magnus/source/interpreter-p1/src/lox/obj/Debug/net8.0/lox.AssemblyInfoInputs.cache
+/Users/magnus/source/interpreter-p1/src/lox/obj/Debug/net8.0/lox.AssemblyInfo.cs
+/Users/magnus/source/interpreter-p1/src/lox/obj/Debug/net8.0/lox.csproj.CoreCompileInputs.cache
+/Users/magnus/source/interpreter-p1/src/lox/obj/Debug/net8.0/lox.sourcelink.json
+/Users/magnus/source/interpreter-p1/src/lox/obj/Debug/net8.0/lox.dll
+/Users/magnus/source/interpreter-p1/src/lox/obj/Debug/net8.0/refint/lox.dll
+/Users/magnus/source/interpreter-p1/src/lox/obj/Debug/net8.0/lox.pdb
+/Users/magnus/source/interpreter-p1/src/lox/obj/Debug/net8.0/lox.genruntimeconfig.cache
+/Users/magnus/source/interpreter-p1/src/lox/obj/Debug/net8.0/ref/lox.dll
