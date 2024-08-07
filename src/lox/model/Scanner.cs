@@ -66,10 +66,33 @@ public class Scanner {
                 line++;
                 break;
             
+            case '"' : parsestring(); break;
+
             default: 
                 Lox.error(line, "Unexpected character.");
                 break;
         }
+    }
+
+
+    private void parsestring() {
+        while(peek() != '"' && !isAtEnd()) {
+            if(peek() =='\n') {
+                line++;
+            }
+            advance();
+        }
+        if(isAtEnd()){
+            Lox.error(line, "Unterminated string.");
+            return;
+        }
+
+        // The closing ".
+        advance();
+
+        // Trim the surrounding quotes.
+        string value = source[(start+1)..(current-1)];
+        addToken(TokenType.STRING,value);
     }
 
     private bool match(char expected) {
