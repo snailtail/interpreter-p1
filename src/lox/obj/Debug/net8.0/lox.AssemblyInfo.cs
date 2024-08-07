@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("lox")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+abf744c9b0e76ca21567ea1d645137518c0c5e06")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7f145cfcf56ca1762ccf73ef46f3d10398c2423")]
 [assembly: System.Reflection.AssemblyProductAttribute("lox")]
 [assembly: System.Reflection.AssemblyTitleAttribute("lox")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
