@@ -1,8 +1,8 @@
 
 public class Token {
     private TokenType type;
-    private String lexeme;
-    private Object literal;
+    private string lexeme;
+    private object? literal;
     private int line;
 
     public Token(TokenType type, String lexeme, object? literal, int line) {
