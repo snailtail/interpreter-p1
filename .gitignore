@@ -425,5 +425,5 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-src/lox/obj/
-src/lox/bin/
+obj/
+bin/
