@@ -1,3 +1,5 @@
+using System.Globalization;
+
 public class Scanner {
     private string source;
     private List<Token> tokens = new();
@@ -69,10 +71,40 @@ public class Scanner {
             case '"' : parsestring(); break;
 
             default: 
-                Lox.error(line, "Unexpected character.");
+                if(isDigit(c))
+                {
+                    number();
+                }
+                else 
+                {
+                    Lox.error(line, "Unexpected character.");
+                }
                 break;
         }
     }
+
+    private void number()
+    {
+        while(isDigit(peek()))
+        {
+            advance();
+        }
+
+        // Look for a fractional part.
+        if (peek() == '.' && isDigit(peekNext()))
+        {
+            // Consume the .
+            advance();
+            while(isDigit(peek()))
+            {
+                advance();
+            }
+        }
+        string doubleToParse = source[start..current];
+        var dbl = Double.Parse(doubleToParse,NumberStyles.Float, CultureInfo.InvariantCulture);
+        addToken(TokenType.NUMBER,dbl);
+    }
+
 
 
     private void parsestring() {
@@ -106,6 +138,19 @@ public class Scanner {
     private char peek() {
         if (isAtEnd()) return '\0';
         return source[current];
+    }
+
+    private char peekNext()
+    {
+        if (current +1 >= source.Length) 
+        {
+            return '\0';
+        }
+        return source[current+1];
+    }
+
+    private bool isDigit(char c) {
+        return c >= '0' && c <= '9';
     }
 
     private bool isAtEnd() {
