@@ -108,16 +108,24 @@ public class Scanner {
 
     private void identifier()
     {
+        TokenType type;
+
         while(isAlphaNumeric(peek()))
         {
             advance();
         }
         string text = source[start..current];
-        TokenType? type = keywords.Where(k=> k.Key == text).Select(v=> v.Value).FirstOrDefault();
-        if(type == null)
+        var filteredKeywords = keywords.Where(k=> k.Key.ToLower() == text.ToLower());
+        if (filteredKeywords.Count() > 0)
+        {
+            type = filteredKeywords.Select(f=> f.Value).First();
+        }
+        else
         {
             type=TokenType.IDENTIFIER;
         }
+                
+        addToken((TokenType)type,text);
     }
 
     private void number()
