@@ -72,11 +72,6 @@ public class Scanner {
                     // a comment goes until the end of the line.
                     while(peek() != '\n' && !isAtEnd()) advance();
                 }
-                else if (peek()=='*') {
-                    //multiline comment
-                    Console.WriteLine("Multiline comment started!");
-                    scanMultiLineComment();
-                }
                 else {
                     addToken(TokenType.SLASH);
                 }
@@ -133,18 +128,7 @@ public class Scanner {
         addToken((TokenType)type,text);
     }
 
-    private void scanMultiLineComment()
-    {
-        do
-        {
-            advance();
-        }
-        while (!(peek() == '*' && peekNext() == '/'));
-        advance();
-        advance();
-        string value = source[start..current];
-        addToken(TokenType.MULTILINECOMMENT,value);
-    }
+    
 
     private void number()
     {
