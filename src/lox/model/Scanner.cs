@@ -1,3 +1,5 @@
+using System.Data;
+using System.Data.Common;
 using System.Globalization;
 
 public class Scanner {
@@ -6,7 +8,24 @@ public class Scanner {
     private int start = 0;
     private int current = 0;
     private int line = 1;
-
+    private static readonly Dictionary<string,TokenType> keywords = new(){
+        {"and",TokenType.AND},
+        {"class", TokenType.CLASS},
+        {"else",TokenType.ELSE},
+        {"false",TokenType.FALSE},
+        {"for",TokenType.FOR},
+        {"fun",TokenType.FUN},
+        {"if",TokenType.IF},
+        {"nil",TokenType.NIL},
+        {"or",TokenType.OR},
+        {"print",TokenType.PRINT},
+        {"return",TokenType.RETURN},
+        {"super",TokenType.SUPER},
+        {"this",TokenType.THIS},
+        {"true",TokenType.TRUE},
+        {"var",TokenType.VAR},
+        {"while",TokenType.WHILE}
+    };
     
     public Scanner(String source) {
         this.source = source;
@@ -75,11 +94,29 @@ public class Scanner {
                 {
                     number();
                 }
+                else if (isAlpha(c))
+                {
+                    identifier();
+                }
                 else 
                 {
                     Lox.error(line, "Unexpected character.");
                 }
                 break;
+        }
+    }
+
+    private void identifier()
+    {
+        while(isAlphaNumeric(peek()))
+        {
+            advance();
+        }
+        string text = source[start..current];
+        TokenType? type = keywords.Where(k=> k.Key == text).Select(v=> v.Value).FirstOrDefault();
+        if(type == null)
+        {
+            type=TokenType.IDENTIFIER;
         }
     }
 
@@ -147,6 +184,15 @@ public class Scanner {
             return '\0';
         }
         return source[current+1];
+    }
+
+    private bool isAlpha(char c)
+    {
+        return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c =='_');
+    }
+    private bool isAlphaNumeric(char c)
+    {
+        return isAlpha(c) || isDigit(c);
     }
 
     private bool isDigit(char c) {
