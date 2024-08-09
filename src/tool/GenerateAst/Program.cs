@@ -24,21 +24,21 @@ public class Program
     private static void defineAst(string outputDir, string baseName, List<string> types)
     {
         string path = Path.Combine(outputDir, baseName + ".cs");
-        
-        StreamWriter writer = new StreamWriter(path,false,System.Text.Encoding.UTF8);
 
-        writer.WriteLine("abstract class " + baseName + "{");
-        writer.WriteLine();
-        foreach (string type in types)
+        using (StreamWriter writer = new StreamWriter(path, false, System.Text.Encoding.UTF8))
         {
-            string className = type.Split(':')[0].Trim();
-            string fields= type.Split(':')[1].Trim();
-            defineType(writer, baseName, className, fields);
+            writer.WriteLine("abstract class " + baseName + "{");
             writer.WriteLine();
-        }
+            foreach (string type in types)
+            {
+                string className = type.Split(':')[0].Trim();
+                string fields= type.Split(':')[1].Trim();
+                defineType(writer, baseName, className, fields);
+                writer.WriteLine();
+            }
 
-        writer.WriteLine("}");
-        writer.Close();
+            writer.WriteLine("}");
+        }
     }
 
     private static void defineType(StreamWriter writer, string baseName, string className, string fieldList)
