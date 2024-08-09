@@ -34,6 +34,7 @@ public class Program
             string className = type.Split(':')[0].Trim();
             string fields= type.Split(':')[1].Trim();
             defineType(writer, baseName, className, fields);
+            writer.WriteLine();
         }
 
         writer.WriteLine("}");
@@ -44,26 +45,29 @@ public class Program
     {
         writer.WriteLine("    static class " + className + " : " + baseName + " {");
 
-        // Constructor
-        writer.WriteLine("    public " + className + "(" + fieldList + ") {");
-
-        // Store parameters in fields.
-        string[] fields = fieldList.Split(", ");
-        foreach (string field in fields)
-        {
-            string name = field.Split(" ")[1];
-            writer.WriteLine("        this." + name + " = " + name + ";");
-        }
-
-        writer.WriteLine("    }");
 
         // Fields
+        string[] fields = fieldList.Split(", ");
+        
         writer.WriteLine();
         foreach(string field in fields)
         {
-            writer.WriteLine("    readonly" + field + ";");
+            writer.WriteLine("        readonly " + field + ";");
+        }
+        writer.WriteLine();
+        // Constructor
+        writer.WriteLine("        public " + className + "(" + fieldList + ") {");
+        
+        // Store parameters in fields.
+        foreach (string field in fields)
+        {
+            string name = field.Split(" ")[1];
+            writer.WriteLine("            this." + name + " = " + name + ";");
         }
 
-        writer.WriteLine(";");
+        writer.WriteLine("        }");
+
+
+        writer.WriteLine("    }");
     }
 }
