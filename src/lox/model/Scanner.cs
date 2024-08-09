@@ -2,6 +2,8 @@ using System.Data;
 using System.Globalization;
 
 public class Scanner {
+
+    #region variables and initialization
     private string source;
     private List<Token> tokens = new();
     private int start = 0;
@@ -30,6 +32,7 @@ public class Scanner {
         this.source = source;
     }
 
+
     internal List<Token> scanTokens() {
         while (!isAtEnd()) {
             // We are at the beginning of the next lexeme.
@@ -39,6 +42,8 @@ public class Scanner {
         tokens.Add(new Token(TokenType.EOF,"", null, line));
         return tokens;
     }
+
+    #endregion
 
     private void scanToken() {
         char c = advance();
